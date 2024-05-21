@@ -9,3 +9,6 @@ $routes->get('/', 'Main::index');
 $routes->setAutoRoute(true);
 $routes->get('/kategori/hapus/(:any)', 'Kategori::index');
 $routes->delete('/kategori/hapus/(:any)', 'Kategori::hapus/$1');
+
+$routes->get('/barang/hapus/(:any)', 'Barang::index');
+$routes->delete('/barang/hapus/(:any)', 'Barang::hapus/$1');
