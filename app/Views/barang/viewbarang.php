@@ -50,12 +50,11 @@ Manajemen Data Barang
                 </button>
 
                 <form method="POST" action="/barang/hapus/<?= $row['brgkode']?>" style="display:inline;" onsubmit="return hapus();">
-                        <input type="hidden" value="DELETE" name="_method">
+                            <input type="hidden" value="DELETE" name="_method">
 
                             <button type="submit" class="btn btn-sm btn-danger" title="Hapus Data" >
                             <i class="fa fa-trash-alt"></i>
                        </button>
-
                        </form>
 
                     </td>
@@ -66,7 +65,7 @@ Manajemen Data Barang
 </table>
 <script>
     function edit(kode){
-        window.location.href=('/barang/edit/'+kode);
+        window.location.href=('/barang/edit/' + kode);
     }
 
     function hapus(kode){

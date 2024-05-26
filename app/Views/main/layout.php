@@ -49,50 +49,101 @@
       <span class="brand-text font-weight-light">App Stock Barang</span>
     </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="<?= base_url() ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+  <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3">
+        <div class="d-flex">
+            <div class="image">
+                <img src="<?= base_url() ?>/dist/img/admin-icon.png" alt="User Image">
+            </div>
+
+              <?php if (!empty(session('name'))): ?>
+                <div class="info">
+                    <a href="#" class="d-block">Halo, <?= session('name') ?>!</a>
+                </div>
+              <?php else: ?>
+                <div class="info">
+                    <a href="#" class="d-block">Silakan masuk!</a>
+                </div>
+                  <script>
+                    window.location.href = '/login';</script>
+              <?php endif; ?>
+            </div>
+            
+
+
+
+    </div>
+
+
+    <!-- SidebarSearch Form -->
+
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <!-- Add icons to the links using the .nav-icon class
+                  with font-awesome or any other icon font library -->
+              <li class="nav-item nav-header">Master</li>
+              <li class="nav-item">
+                  <a href="<?= site_url('kategori/index'); ?>" class="nav-link">
+                      <i class="nav-icon fa fa-tasks text-primary"></i>
+                      <p class="text">Kategori</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="<?= site_url('satuan/index'); ?>" class="nav-link">
+                      <i class="nav-icon fa fa-angle-double-right text-warning"></i>
+                      <p class="text">Satuan</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="<?= site_url('barang/index'); ?>" class="nav-link">
+                      <i class="nav-icon fa fa-tasks text-success"></i>
+                      <p class="text">Barang</p>
+                  </a>
+              </li>
+          </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->
+
+<!-- Logout Button -->
+<div style="height: 50vh; position: relative;">
+<div style="position: absolute; bottom: 0;" class="w-100 text-center hover-scale">
+  
+    <a href="#" data-toggle="modal" data-target="#logoutModal" data-backdrop="false" class="text-danger btn-block py-2">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+
+  <!-- Modal -->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Logout</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="info">
-          <a href="#" class="d-block">Administrator</a>
+        <div class="modal-body">
+          Apakah kamu yakin ingin keluar dari akun <?= session('name') ?>?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal.</button>
+          <a href="<?php echo base_url('/logout'); ?>" class="btn btn-danger">Ya, Keluar!</a>
         </div>
       </div>
-
-      <!-- SidebarSearch Form -->
-      
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               <li class="nav-header">Master</li>
-               <li class="nav-link">
-                    <a href="<?= site_url('kategori/index'); ?>" class="nav-link">
-                        <i class="nav-icon fa fa-tasks text-primary"></i>
-                        <p class="text">Kategori</p>
-                    </a>
-                </li>
-                <li class="nav-link">
-                    <a href="<?= site_url('satuan/index'); ?>" class="nav-link">
-                        <i class="nav-icon fa fa-angle-double-right text-warning"></i>
-                        <p class="text">Satuan</p>
-                    </a>
-                </li>
-                <li class="nav-link">
-                    <a href="<?= site_url('barang/index'); ?>" class="nav-link">
-                        <i class="nav-icon fa fa-tasks text-danger"></i>
-                        <p class="text">Barang</p>
-                    </a>
-                </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
+  </div>
+</div>
+</div>
+<!-- / Logout Button -->
+
   </aside>
 
   <!-- Content Wrapper. Contains page content -->

@@ -55,7 +55,6 @@ Manajemen Data Kategori
                             <button type="submit" class="btn btn-danger" title="Hapus Data" >
                             <i class="fa fa-trash-alt"></i>
                        </button>
-
                        </form>
                     </td>
                 </tr>
