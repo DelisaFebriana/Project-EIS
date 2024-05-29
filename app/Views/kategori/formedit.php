@@ -8,7 +8,7 @@ Form Edit Kategori
 
 <?= form_button('', '<i class="fa fa-backward"></i> Kembali',[
     'class' => 'btn btn-warning',
-    'onclick' => "location.href=('" . site_url('kategori/index') . "')"
+    'onclick' => "location.href=('" . site_url('kategori') . "')"
 ]) ?>
 
 <?= $this->endSection('subjudul') ?>

@@ -8,7 +8,7 @@ Form Tambah Kategori
 
 <?= form_button('', '<i class="fa fa-backward"></i> Kembali',[
     'class' => 'btn btn-warning',
-    'onclick' => "location.href=('" . site_url('kategori/index') . "')"
+    'onclick' => "location.href=('" . site_url('kategori') . "')"
 ]) ?>
 
 <?= $this->endSection('subjudul') ?>
@@ -28,7 +28,7 @@ Form Tambah Kategori
 
 </div>
 
-<div class="form-grou">
+<div class="form-group">
     <?= form_submit('', 'Simpan',[
         'class' => 'btn btn-success'
     ]) ?>

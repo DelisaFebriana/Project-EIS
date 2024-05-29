@@ -89,7 +89,7 @@
                   with font-awesome or any other icon font library -->
               <li class="nav-item nav-header">Master</li>
               <li class="nav-item">
-                  <a href="<?= site_url('kategori/index'); ?>" class="nav-link">
+                  <a href="<?= site_url('kategori'); ?>" class="nav-link">
                       <i class="nav-icon fa fa-tasks text-primary"></i>
                       <p class="text">Kategori</p>
                   </a>

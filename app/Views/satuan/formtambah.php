@@ -28,7 +28,7 @@ Form Tambah Satuan
 
 </div>
 
-<div class="form-grou">
+<div class="form-group">
     <?= form_submit('', 'Simpan',[
         'class' => 'btn btn-success'
     ]) ?>

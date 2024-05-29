@@ -18,7 +18,7 @@ class Kategori extends BaseController
         if(isset($tombolcari)){
             $cari = $this->request->getPost('cari');
             session()->set('cari_kategori', $cari);
-            redirect()->to('/kategori/index');
+            redirect()->to('/kategori');
         }else{
             $cari = session()->get('cari_kategori');
         }
@@ -72,7 +72,7 @@ class Kategori extends BaseController
             ];
 
             session()->setFlashdata($pesan);
-            return redirect()->to('/kategori/index');
+            return redirect()->to('/kategori');
         }
     }
 
@@ -130,7 +130,7 @@ class Kategori extends BaseController
             ];
 
             session()->setFlashdata($pesan);
-            return redirect()->to('/kategori/index');
+            return redirect()->to('/kategori');
         }
     }
 
@@ -150,7 +150,7 @@ class Kategori extends BaseController
             ];
 
             session()->setFlashdata($pesan);
-            return redirect()->to('/kategori/index');
+            return redirect()->to('/kategori');
 
         }else{
             exit('Data tidak ditemukan');

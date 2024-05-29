@@ -7,8 +7,10 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Main::index');
 $routes->setAutoRoute(true);
-$routes->get('/kategori/hapus/(:any)', 'Kategori::index');
+$routes->get('/kategori/hapus/(:any)','kategori::index');
 $routes->delete('/kategori/hapus/(:any)', 'Kategori::hapus/$1');
+$routes->get('/kategori/formedit/(:num)', 'Kategori::formedit/$1');
+$routes->get('/kategori/formtambah', 'Kategori::formTambah');
 
 $routes->get('/barang/hapus/(:any)', 'Barang::index');
 $routes->delete('/barang/hapus/(:any)', 'Barang::hapus/$1');
