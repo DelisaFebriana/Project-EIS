@@ -290,6 +290,7 @@ public function hapus($kode)
     if ($cekData){
 
         $pathGambarLama = $cekData['brggambar'];
+        if (file_exists($pathGambarLama))
         unlink($pathGambarLama);
         $this->barang->delete($kode);
         $pesan_sukses = [
