@@ -7,12 +7,25 @@ use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\Modelbarang;
 use App\Models\Modelkategori;
 use App\Models\Modelsatuan;
+use App\Models\ModelLog;
 
 class Barang extends BaseController
 {
     public function __construct() 
     {
         $this->barang = new Modelbarang();
+        $this->log = new ModelLog();
+        $this->session = \Config\Services::session();
+    }
+
+    private function logAction($kodebarang, $action)
+    {
+        $userName = $this->session->get('name');
+        $this->log->insert([
+            'barang_id' => $kodebarang,
+            'action' => $action,
+            'user_name' => $userName
+        ]);
     }
 
     public function index()
@@ -130,6 +143,8 @@ class Barang extends BaseController
                 'brgstok' => $stok,
                 'brggambar' => $pathGambar
             ]);
+
+            $this->logAction($kodebarang, 'create');
 
             $pesan_sukses = [
                 'sukses' => '<div class="alert alert-success alert-dismissible">
@@ -270,6 +285,8 @@ class Barang extends BaseController
                 'brggambar' => $pathGambar
             ]);
 
+            $this->logAction($kodebarang, 'update');
+
             $pesan_sukses = [
                 'sukses' => '<div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -293,6 +310,9 @@ public function hapus($kode)
         if (file_exists($pathGambarLama))
         unlink($pathGambarLama);
         $this->barang->delete($kode);
+
+        $this->logAction($kode, 'delete');
+
         $pesan_sukses = [
             'sukses' => '<div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

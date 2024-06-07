@@ -4,13 +4,27 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ModelSatuan;
+use App\Models\ModelLog;
 
 class Satuan extends BaseController
 {
     public function __construct()
     {
         $this->satuan = new Modelsatuan();
+        $this->log = new ModelLog();
+        $this->session = \Config\Services::session();
     }
+
+    private function logAction($satuanId, $action)
+    {
+        $userName = $this->session->get('name');
+        $this->log->insert([
+            'satuan_id' => $satuanId,
+            'action' => $action,
+            'user_name' => $userName
+        ]);
+    }
+    
     public function index()
     {
         $tombolcari = $this->request->getPost('tombolcari');
@@ -67,6 +81,8 @@ class Satuan extends BaseController
                 'satnama' => $namasatuan
             ]);
 
+            $this->logAction($this->satuan->getInsertID(), 'create');
+
             $pesan=[
                 'sukses' => '<br><div class="alert alert-success">Data satuan berhasil di tambahkan...</div>'
             ];
@@ -121,6 +137,8 @@ class Satuan extends BaseController
                 'satnama' => $namasatuan
             ]);
 
+            $this->logAction($idsatuan, 'update');
+
             $pesan=[
                 'sukses' => '<div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -140,6 +158,8 @@ class Satuan extends BaseController
         if($rowData){
 
             $this->satuan->delete($id);
+
+            $this->logAction($id, 'delete');
 
             $pesan=[
                 'sukses' => '<div class="alert alert-success alert-dismissible">

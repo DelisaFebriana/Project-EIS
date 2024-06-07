@@ -4,13 +4,27 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Modelkategori;
+use App\Models\ModelLog;
 
 class Kategori extends BaseController
 {
     public function __construct()
     {
         $this->kategori = new Modelkategori();
+        $this->log = new ModelLog();
+        $this->session = \Config\Services::session();
     }
+
+    private function logAction($kategoriId, $action)
+    {
+        $userName = $this->session->get('name');
+        $this->log->insert([
+            'kategori_id' => $kategoriId,
+            'action' => $action,
+            'user_name' => $userName
+        ]);
+    }
+
     public function index()
     {
         $tombolcari = $this->request->getPost('tombolcari');
@@ -67,6 +81,8 @@ class Kategori extends BaseController
                 'katnama' => $namakategori
             ]);
 
+            $this->logAction($this->kategori->getInsertID(), 'create');
+
             $pesan=[
                 'sukses' => '<br><div class="alert alert-success">Data kategori berhasil di tambahkan...</div>'
             ];
@@ -121,6 +137,8 @@ class Kategori extends BaseController
                 'katnama' => $namakategori
             ]);
 
+            $this->logAction($idkategori, 'update');
+
             $pesan=[
                 'sukses' => '<div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -140,6 +158,8 @@ class Kategori extends BaseController
         if($rowData){
 
             $this->kategori->delete($id);
+
+            $this->logAction($id, 'delete');
 
             $pesan=[
                 'sukses' => '<div class="alert alert-success alert-dismissible">
